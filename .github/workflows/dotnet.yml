@@ -25,6 +25,10 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release
 
+    
+    - name: List Directory Structure
+      run: ls -R
+
     - name: Publish Artifact
       uses: actions/upload-artifact@v2
       with:
