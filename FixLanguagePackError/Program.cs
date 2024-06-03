@@ -52,7 +52,7 @@ namespace FixLanguagePackError
             Console.WriteLine("Apply language pack...");
             try
             {
-                int statusCode = PowerShell.ExecuteCommand("Set-SystemPreferredUILanguage -Language en-US; exit");
+                int statusCode = PowerShell.ExecuteCommand("Set-SystemPreferredUILanguage -Language en-US;Set-WinUILanguageOverride -Language en-US;exit");
 
                 if (statusCode != 0)
                 {
@@ -82,7 +82,7 @@ namespace FixLanguagePackError
                 return;
             }
 
-            System.Console.WriteLine("Installation successful! Please reboot your computer. Afterwards you can select the language in the settings");
+            System.Console.WriteLine("Installation successful! Please reboot your computer.");
             Console.ReadLine();
 
 
