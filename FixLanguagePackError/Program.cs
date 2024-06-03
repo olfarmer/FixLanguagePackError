@@ -36,7 +36,7 @@ namespace FixLanguagePackError
 
             try
             {
-                int statusCode = PowerShell.ExecuteCommand("Install-Language -Language en-US");
+                int statusCode = PowerShell.ExecuteCommand("Install-Language -Language en-US; exit");
 
                 if (statusCode != 0)
                 {
@@ -48,6 +48,8 @@ namespace FixLanguagePackError
                 Console.WriteLine(e);
                 throw;
             }
+
+            System.Console.WriteLine("Revert registry keys...");
 
             try
             {
@@ -63,7 +65,7 @@ namespace FixLanguagePackError
                 return;
             }
 
-
+            System.Console.WriteLine("Installation successful! Please reboot your computer.");
             Console.ReadLine();
 
 
