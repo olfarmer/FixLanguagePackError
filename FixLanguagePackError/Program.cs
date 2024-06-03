@@ -77,12 +77,12 @@ namespace FixLanguagePackError
             }
             catch (Exception e)
             {
-                Console.WriteLine("Failed to set registry values: " + e);
+                Console.WriteLine("Failed to delete registry values: " + e);
                 Console.ReadLine();
                 return;
             }
 
-            System.Console.WriteLine("Installation successful! Please reboot your computer.");
+            System.Console.WriteLine("Installation successful! Please reboot your computer. Afterwards you can select the language in the settings");
             Console.ReadLine();
 
 
