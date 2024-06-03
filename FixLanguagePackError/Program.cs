@@ -49,6 +49,22 @@ namespace FixLanguagePackError
                 throw;
             }
 
+            Console.WriteLine("Apply language pack...");
+            try
+            {
+                int statusCode = PowerShell.ExecuteCommand("Set-SystemPreferredUILanguage -Language en-US; exit");
+
+                if (statusCode != 0)
+                {
+                    Console.WriteLine("An error occurred. Could not apply language pack.");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
             Console.WriteLine("Revert registry keys...");
 
             try
