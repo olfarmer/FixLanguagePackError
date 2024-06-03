@@ -49,14 +49,15 @@ namespace FixLanguagePackError
                 throw;
             }
 
-            System.Console.WriteLine("Revert registry keys...");
+            Console.WriteLine("Revert registry keys...");
 
             try
             {
-                Registry.SetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate",
-                    "DoNotConnectToWindowsUpdateInternetLocations", "1", RegistryValueKind.DWord);
-                Registry.SetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU",
-                    "UseWUServer", "1", RegistryValueKind.DWord);
+                DeleteKey("SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate",
+                    "DoNotConnectToWindowsUpdateInternetLocations");
+                
+                DeleteKey("SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU",
+                    "UseWUServer");
             }
             catch (Exception e)
             {
@@ -68,6 +69,22 @@ namespace FixLanguagePackError
             System.Console.WriteLine("Installation successful! Please reboot your computer.");
             Console.ReadLine();
 
+
+        }
+        
+        private static void DeleteKey(string keyName, string valueName)
+        {
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(keyName, true))
+            {
+                if (key == null)
+                {
+                    Console.WriteLine("Registry key does not exit.");
+                }
+                else
+                {
+                    key.DeleteValue(valueName);
+                }
+            }
 
         }
     }
