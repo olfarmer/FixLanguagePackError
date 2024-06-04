@@ -13,7 +13,7 @@ It does following:
 *  Sets preferred language to en-US
 *  Deletes the registry keys again
 
-  # Requriements
+  # Requirements
   * Windows 11 22H2 or Windows 10 21H2+
   * Administrator privileges
   * .net 6.0
